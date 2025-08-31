@@ -1,0 +1,120 @@
+
+.container {
+  min-height: 100vh;
+  background: #16202a;
+  color: #eaf6fb;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  padding: 32px 0 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 16px;
+  color: #eaf6fb;
+}
+
+.search {
+  width: 350px;
+  padding: 12px 18px;
+  border-radius: 8px;
+  border: none;
+  background: #1c2733;
+  color: #eaf6fb;
+  font-size: 1.1rem;
+  margin-bottom: 32px;
+  box-shadow: 0 0 8px #1de972;
+  outline: none;
+}
+
+.listSection {
+  width: 100%;
+  max-width: 500px;
+  margin-top: 16px;
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  color: #eaf6fb;
+}
+
+.wordList {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.wordBtn {
+  background: #1c2733;
+  color: #eaf6fb;
+  border: none;
+  border-radius: 32px;
+  font-size: 1.2rem;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 0 8px #1de9b6;
+  transition: background 0.2s, color 0.2s;
+}
+.wordBtn:hover {
+  background: #1de9b6;
+  color: #16202a;
+}
+
+.playIcon {
+  font-size: 1.3rem;
+  margin-left: 12px;
+  color: #1de9b6;
+}
+
+.videoModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1c2733;
+  border: 2px solid #1de9b6;
+  border-radius: 16px;
+  box-shadow: 0 0 24px #1de9b6;
+  padding: 32px 24px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+  color: #eaf6fb;
+}
+
+.video {
+  width: 320px;
+  height: 180px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 12px #1de9b6;
+}
+
+.closeBtn {
+  background: #1de9b6;
+  color: #16202a;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 0 8px #1de9b6;
+  transition: background 0.2s, color 0.2s;
+}
+.closeBtn:hover {
+  background: #16202a;
+  color: #1de9b6;
+  border: 2px solid #1de9b6;
+}
