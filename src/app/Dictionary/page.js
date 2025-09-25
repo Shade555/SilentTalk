@@ -31,16 +31,20 @@ export default function Dictionary() {
       />
       <div className={styles.listSection}>
         <h3 className={styles.subtitle}>Most frequently searched words</h3>
-        <div className={styles.wordList}>
+        <div className={styles.wordGrid}>
           {filteredWords.map(w => (
-            <button
-              key={w.word}
-              className={styles.wordBtn}
-              onClick={() => setSelectedWord(w)}
-            >
-              {w.word}
-              <span className={styles.playIcon}>▶</span>
-            </button>
+            <div key={w.word} className={styles.wordCard}>
+              <div className={styles.wordCardContent}>
+                <span className={styles.wordText}>{w.word}</span>
+                <button
+                  className={styles.playBtn}
+                  onClick={() => setSelectedWord(w)}
+                  aria-label={`Play video for ${w.word}`}
+                >
+                  <span className={styles.playIcon}>▶</span>
+                </button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
