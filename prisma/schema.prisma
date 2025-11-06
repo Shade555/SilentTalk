@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                 String              @id @default(uuid())
+  clerkId            String              @unique
+  name               String?
+  email              String?             @unique
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  chapterCompletions ChapterCompletion[]
+  completions        ModuleCompletion?
+  transactions       Transaction[]
+  activityLogs       ActivityLog[]
+
+  @@map("users")
+}
+
+model ModuleCompletion {
+  id          String   @id @default(uuid())
+  userId      String   @unique @map("user_id")
+  chapterId   String   @map("chapter_id")
+  moduleId    String   @map("module_id")
+  points      Int      @default(0)
+  completedAt DateTime @default(now()) @map("completed_at")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chapterId, moduleId])
+  @@map("module_completions")
+}
+
+model ChapterCompletion {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  chapterId   String   @map("chapter_id")
+  completedAt DateTime @default(now()) @map("completed_at")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chapterId])
+  @@map("chapter_completions")
+}
+
+model Transaction {
+  id            String    @id @default(uuid())
+  amount        Int
+  startDate     DateTime?
+  endDate       DateTime?
+  createdAt     DateTime  @default(now())
+  currency      String
+  plan          String
+  status        String
+  stripeSession String    @unique
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("transactions")
+}
+
+model ActivityLog {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  minutes     Int      @default(0)
+  description String?
+  date        DateTime @default(now())
+  completedAt DateTime @default(now()) @map("completed_at")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("activity_log")
+}
