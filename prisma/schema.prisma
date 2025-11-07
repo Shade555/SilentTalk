@@ -9,16 +9,17 @@ datasource db {
 }
 
 model User {
-  id                 String              @id @default(uuid())
-  clerkId            String              @unique
-  name               String?
-  email              String?             @unique
-  createdAt          DateTime            @default(now())
-  updatedAt          DateTime            @updatedAt
-  chapterCompletions ChapterCompletion[]
-  completions        ModuleCompletion?
-  transactions       Transaction[]
-  activityLogs       ActivityLog[]
+  id                  String                @id @default(uuid())
+  clerkId             String                @unique
+  name                String?
+  email               String?               @unique
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+  chapterCompletions  ChapterCompletion[]
+  completions         ModuleCompletion?
+  transactions        Transaction[]
+  activityLogs        ActivityLog[]
+  interactiveProgress InteractiveProgress[]
 
   @@map("users")
 }
@@ -75,4 +76,26 @@ model ActivityLog {
 
   @@index([userId])
   @@map("activity_log")
+}
+
+model InteractiveProgress {
+  id          String   @id @default(uuid())
+  userId      String   @map("user_id")
+  chapterId   String   @map("chapter_id")
+  completed   Boolean  @default(false)
+  completedAt DateTime @default(now()) @map("completed_at")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, chapterId])
+  @@map("interactive_progress")
+}
+
+model Sign {
+  id        String   @id @default(uuid())
+  name      String   // Name of the ASL sign (e.g., "HELLO")
+  image     String   // URL to an image of the sign
+  videoUrl  String?  // Optional URL to a video of the sign
+  createdAt DateTime @default(now())
+
+  @@map("asl_signs")
 }
