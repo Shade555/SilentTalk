@@ -28,6 +28,8 @@ export default function RootLayout({ children }) {
       <html lang="en">
         <head>
         <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Patrick+Hand&display=swap" rel="stylesheet"/>
+        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
         </head>
         <body
           className={`${nunito.variable} ${inter.variable} overflow-x-hidden overflow-y-auto`}

@@ -20,6 +20,9 @@ const Headerfordash = () => {
            <Link href="/progress" className="hover:text-green-950 font-medium">
             Progress
           </Link>
+          <Link href="/interactivepractice" className="hover:text-green-950 font-medium">
+            Interactive Practice
+          </Link>
         </div>
 
       </nav>
